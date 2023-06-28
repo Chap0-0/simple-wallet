@@ -1,5 +1,6 @@
 let balance = 0;
 let transactions = [];
+
 if (localStorage.getItem("balance")) {
   balance = parseFloat(localStorage.getItem("balance"));
 }
@@ -13,23 +14,21 @@ updateTransactionHistory();
 
 function getExchangeRate() {
   // Отправка запроса к API для получения текущего курса валют
-  fetch("https://www.cbr-xml-daily.ru/daily_json.js")
+  fetch("api.json")
     .then((response) => response.json())
     .then((data) => {
       // Обработка полученных данных
       // Доступ к текущему курсу валют
-      const exchangeRateUSD = data.Valute.USD.Value;
+      const exchangeRateUSD = data.USD.Value;
       rubToUsdRate = 1 / exchangeRateUSD;
-      const exchangeRateEUR = data.Valute.EUR.Value;
+      const exchangeRateEUR = data.EUR.Value;
       rubToEurRate = 1 / exchangeRateEUR;
     })
     .catch((error) => {
       console.log("Ошибка при получении данных: ", error);
     });
 }
-
 getExchangeRate();
-setInterval(getExchangeRate, 60000); // Повторный запрос каждую минуту
 
 function updateBalance() {
   document.getElementById("balance").innerText = balance.toFixed(2);
@@ -40,6 +39,7 @@ function updateBalance() {
   currencySelect.selectedIndex = 0;
 
   currencySelect.addEventListener("change", updateConvertedBalance);
+
   function updateConvertedBalance() {
     let currency = currencySelect.value;
     let convertedBalance = 0;
@@ -76,10 +76,12 @@ function deposit() {
   let depositAmount = parseFloat(
     document.getElementById("depositAmount").value
   );
-  if (isNaN(depositAmount)) {
-    alert("Введите корректную сумму депозита");
+
+  if (isNaN(depositAmount) || depositAmount < 0) {
+    alert("Введите корректную положительную сумму депозита");
     return;
   }
+
   balance += depositAmount;
   let transaction = {
     type: "Пополнение",
@@ -98,14 +100,17 @@ function withdraw() {
   let withdrawAmount = parseFloat(
     document.getElementById("withdrawAmount").value
   );
-  if (isNaN(withdrawAmount)) {
-    alert("Введите корректную сумму вывода");
+
+  if (isNaN(withdrawAmount) || withdrawAmount < 0) {
+    alert("Введите корректную положительную сумму вывода");
     return;
   }
+
   if (withdrawAmount > balance) {
     alert("Недостаточно средств на балансе");
     return;
   }
+
   balance -= withdrawAmount;
   let transaction = {
     type: "Вывод",
