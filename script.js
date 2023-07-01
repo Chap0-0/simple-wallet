@@ -125,25 +125,6 @@ function withdraw() {
   document.getElementById("withdrawAmount").value = "";
 }
 
-function viewHistory() {
-  if (transactions.length === 0) {
-    alert("Ваша история транзакций:\n\n(Пока что пусто)");
-  } else {
-    let transactionHistory = "Ваша история транзакций:\n\n";
-    for (let i = 0; i < transactions.length; i++) {
-      let transaction = transactions[i];
-      transactionHistory +=
-        transaction.type +
-        ": " +
-        transaction.amount +
-        " (" +
-        transaction.time +
-        ")\n";
-    }
-    alert(transactionHistory);
-  }
-}
-
 function saveTransactionsToLocalStorage() {
   localStorage.setItem("transactions", JSON.stringify(transactions));
 }
