@@ -1,0 +1,84 @@
+body {
+    background-color: #f3f3f3;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 400px;
+    padding: 20px;
+  }
+  
+  h1 {
+    color: #808080;
+    font-size: 24px;
+    margin-top: 0;
+    text-align: center;
+  }
+  
+  p {
+    color: #808080;
+    margin-bottom: 10px;
+  }
+  
+  #balance,
+  #convertedBalance {
+    font-weight: bold;
+    color: #808080;
+  }
+  
+  #currency {
+    display: block;
+    margin-bottom: 20px;
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #d3d3d3;
+    border-radius: 4px;
+    color: #808080;
+  }
+  
+  form {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 8px;
+    color: #808080;
+  }
+  
+  input[type="number"] {
+    display: block;
+    width: 95.5%;
+    padding: 8px;
+    border: 1px solid #d3d3d3;
+    border-radius: 4px;
+    color: #808080;
+  }
+  
+  button {
+    background-color: #6f42c1;
+    border: none;
+    border-radius: 4px;
+    color: #ffffff;
+    cursor: pointer;
+    display: block;
+    font-size: 14px;
+    margin-top: 10px;
+    padding: 8px 16px;
+    width: 100%;
+  }
+  
+  pre {
+    background-color: #f3f3f3;
+    border-radius: 4px;
+    padding: 10px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+  
