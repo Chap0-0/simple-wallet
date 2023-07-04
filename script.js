@@ -11,24 +11,26 @@ if (localStorage.getItem("transactions")) {
 
 updateBalance();
 updateTransactionHistory();
-
-function getExchangeRate() {
-  // Отправка запроса к API для получения текущего курса валют
-  fetch("api.json")
-    .then((response) => response.json())
-    .then((data) => {
-      // Обработка полученных данных
-      // Доступ к текущему курсу валют
-      const exchangeRateUSD = data.USD.Value;
-      rubToUsdRate = 1 / exchangeRateUSD;
-      const exchangeRateEUR = data.EUR.Value;
-      rubToEurRate = 1 / exchangeRateEUR;
-    })
-    .catch((error) => {
-      console.log("Ошибка при получении данных: ", error);
-    });
-}
-getExchangeRate();
+let rubToUsdRate = 1 / 89.42;
+let rubToEurRate = 1 / 97.66;
+//Функция ниже, использует апи ЦБР и передает данные валют(её использовать только если есть возможность использовать localhost vscode или openserver, ну и если есть возможность достать ссылку на апи)
+// function getExchangeRate() {
+//   // Отправка запроса к API для получения текущего курса валют
+//   fetch("https://www.cbr-xml-daily.ru/daily_json.js")
+//     .then((response) => response.json())
+//     .then((data) => {
+//       // Обработка полученных данных
+//       // Доступ к текущему курсу валют
+//       const exchangeRateUSD = data.Valute.USD.Value;
+//       rubToUsdRate = 1 / exchangeRateUSD;
+//       const exchangeRateEUR = data.Valute.EUR.Value;
+//       rubToEurRate = 1 / exchangeRateEUR;
+//     })
+//     .catch((error) => {
+//       console.log("Ошибка при получении данных: ", error);
+//     });
+// }
+// getExchangeRate();
 
 function updateBalance() {
   document.getElementById("balance").innerText = balance.toFixed(2);
